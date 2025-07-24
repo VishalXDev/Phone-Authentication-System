@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📱 Phone Authentication System
 
-## Getting Started
+This is a simple and secure **Phone OTP Authentication System** built with **Next.js 14**, **Tailwind CSS**, and **Axios**. It includes:
 
-First, run the development server:
+- Phone number login/register
+- OTP verification
+- Protected profile route
+- Logout functionality
+
+## 🚀 Features
+
+- 📞 Login/Register with Phone Number
+- 🔐 OTP Verification
+- 👤 Protected Profile Page (only accessible after login)
+- 🔓 Logout
+- 🍪 Token stored securely in cookies
+- ⚙️ Middleware-based route protection
+- 📦 Clean and modular file structure
+- 🌐 Fully responsive UI
+- 🔔 Toast notifications for feedback
+
+---
+
+## 📂 Folder Structure
+
+/app
+├── login/page.tsx // Phone input page
+├── verify/page.tsx // OTP input page
+├── profile/page.tsx // Protected profile page
+├── layout.tsx // App layout
+├── middleware.ts // Auth middleware
+/components
+└── PhoneInput.tsx // Reusable phone input component
+/lib
+└── axios.ts // Axios instance
+└── auth.ts // Cookie/token utilities
+/public
+└── favicon.ico
+/styles
+└── globals.css
+.env.local // Environment variables
+next.config.js // Next.js config
+tailwind.config.ts // Tailwind CSS config
+tsconfig.json // TypeScript config
+
+yaml
+Copy code
+
+---
+
+## 🧪 API Integration
+
+This app uses 4 API endpoints (provided):
+
+| Endpoint                 | Method | Purpose                    |
+|--------------------------|--------|----------------------------|
+| `/api/auth/login`       | POST   | Send phone number for OTP |
+| `/api/auth/verify-otp`  | POST   | Verify OTP & login user   |
+| `/api/auth/profile`     | GET    | Get user profile info     |
+| `/api/auth/logout`      | POST   | Logout and clear session  |
+
+> All APIs are consumed via `lib/axios.ts` and cookies are handled securely.
+
+---
+
+## 🔧 Getting Started
+
+### 1. Clone the Repo
 
 ```bash
+git clone https://github.com/VishalXDev/phone-auth-app.git
+cd phone-auth-app
+2. Install Dependencies
+bash
+Copy code
+npm install
+# or
+yarn install
+3. Setup .env.local
+env
+Copy code
+NEXT_PUBLIC_API_URL=http://localhost:3004
+Replace with your actual backend URL if hosted elsewhere.
+
+4. Run the App
+bash
+Copy code
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+✅ Usage Guide
+Go to /login and enter your phone number.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Submit and receive an OTP on your phone.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Enter OTP on /verify.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+On successful verification, you're redirected to /profile.
 
-## Learn More
+Logout anytime from profile page.
 
-To learn more about Next.js, take a look at the following resources:
+🔐 Middleware (Auth Protection)
+The profile page (/profile) is protected using Next.js middleware. If the token is missing or invalid, users are redirected to /login.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📦 Tech Stack
+Frontend: Next.js 14+, Tailwind CSS, TypeScript
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+API Integration: Axios
 
-## Deploy on Vercel
+State & Cookies: Local state + set-cookie header + Next.js middleware
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Notifications: react-hot-toast
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📝 Notes
+This project is built for an internship assignment.
+
+AI assistance (ChatGPT) was used for code structuring and best practice guidance.
+
+Fully responsive and production-ready.
+
+📸 Screenshots
+Add 2–3 screenshots here if required: login, verify, and profile page.
+
+📬 Contact
+Made with ❤️ by VishalXDev
