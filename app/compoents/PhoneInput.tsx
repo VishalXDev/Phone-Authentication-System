@@ -16,7 +16,7 @@ export default function PhoneInput() {
 
     setLoading(true)
     try {
-      await axios.post('/auth/send-otp', { phone }) // ✅
+      await axios.post('/api/auth/send-otp', { phone })
       toast.success('OTP sent successfully!')
       localStorage.setItem('phone', phone)
       router.push('/verify')

@@ -1,4 +1,8 @@
+// page/api/auth/verify-otp.ts
 import type { NextApiRequest, NextApiResponse } from 'next'
+import jwt from 'jsonwebtoken'
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -12,7 +16,18 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   // ✅ Simulate OTP verification (replace with real check if needed)
   if (otp === '123456') {
-    return res.status(200).json({ message: 'OTP verified successfully' })
+    // Generate JWT token
+    const token = jwt.sign(
+      { phone, userId: `user_${phone}` },
+      JWT_SECRET,
+      { expiresIn: '7d' }
+    )
+
+    return res.status(200).json({ 
+      message: 'OTP verified successfully',
+      token,
+      user: { phone }
+    })
   } else {
     return res.status(401).json({ message: 'Invalid OTP' })
   }
