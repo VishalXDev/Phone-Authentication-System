@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import axios from '@/app/lib/axios'
+import axios from '@/app/lib/axios' // ✅ Must point to your custom axios
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
@@ -16,7 +16,7 @@ export default function PhoneInput() {
 
     setLoading(true)
     try {
-      await axios.post('/auth/send-otp', { phone }) 
+      await axios.post('/auth/send-otp', { phone }) // ✅
       toast.success('OTP sent successfully!')
       localStorage.setItem('phone', phone)
       router.push('/verify')
